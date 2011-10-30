@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h2>Sezóny</h2>
+<h2>Novinky</h2>
 <div id="actions">
     <ul>
         <li><a href="?section=news">Zobrazit</a></li>

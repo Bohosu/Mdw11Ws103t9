@@ -21,8 +21,12 @@ public class UserModel {
 
     public static boolean isLoggedIn(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Object o = session.getAttribute(SESSION);
-        loggedIn = (o != null && o.equals(true));
+        Long o = (Long) session.getAttribute(SESSION);
+        loggedIn = (o != null && o > 0);
+        if(loggedIn && u == null) {
+            UserDAO dao = new UserDAO();
+            u = dao.get(o);
+        }
         return loggedIn;
     }
 
@@ -31,7 +35,7 @@ public class UserModel {
         User user = dao.ofy().query(User.class).filter("email", email).get();
         if(user != null && user.getPassword().equals(calculateHash(password))) {
             HttpSession session = request.getSession();
-            session.setAttribute(SESSION, true);
+            session.setAttribute(SESSION, user.getId());
             u = user;
             loggedIn = true;
         }
@@ -39,7 +43,8 @@ public class UserModel {
 
     public static void logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        session.setAttribute(SESSION, false);
+        session.removeAttribute(SESSION);
+        u = null;
         loggedIn = false;
     }
 
