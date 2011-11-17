@@ -58,12 +58,13 @@ public class MatchesController {
             String action = request.getParameter("action");
             MatchDAO dao = new MatchDAO();
             TeamDAO tdao = new TeamDAO();
-            Competition c = cdao.get(Long.parseLong(request.getParameter("competition")));
-            request.setAttribute("teams", tdao.ofy().get(Arrays.asList(c.getTeams())).values());
+            Long cid = Long.parseLong(request.getParameter("competition"));
+            Competition c = cdao.get(cid);
+            request.setAttribute("teams", tdao.ofy().get(c.getTeams() == null ? tdao.query().fetchKeys() : Arrays.asList(c.getTeams())).values());
             request.setAttribute("cmps", cdao.getAll());
             SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             if (action == null) {
-                request.setAttribute("data", dao.getAll());
+                request.setAttribute("data", dao.query().filter("competition", new Key(Competition.class, cid)).list());
                 request.setAttribute("teams", tdao.getAllFetched());
                 request.setAttribute("cmps", cdao.getAllFetched());
             } else if (action.equals("delete")) {
@@ -217,11 +218,14 @@ public class MatchesController {
                 request.setAttribute("goals", goals);
                 GoalDAO gdao = new GoalDAO();
                 if (m.getGoals() != null) {
-                    Goal[] g = new Goal[m.getGoals().length];
+                    Goal[] g = new Goal[goals];
                     int i = 0;
                     for (Key<Goal> kg : m.getGoals()) {
                         g[i] = gdao.get(kg.getId());
                         i++;
+                    }
+                    for (int j = m.getGoals().length; j < goals; j++) {
+                        g[j] = null;
                     }
                     request.setAttribute("g", g);
                 }

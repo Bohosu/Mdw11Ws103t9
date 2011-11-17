@@ -10,7 +10,7 @@
             <label>Soutěž
         <select name="cmp">
         <c:forEach var="c" items="${competitions}">
-            <option value="${c.id}">${c.name} ${seasons[$c.season.id]}</option>
+            <option value="${c.id}">${c.name} ${c.season.id}</option>
         </c:forEach>
         </select>
             </label>
