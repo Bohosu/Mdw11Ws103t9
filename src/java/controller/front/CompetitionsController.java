@@ -45,15 +45,15 @@ public class CompetitionsController {
             request.setAttribute("teams", tdao.getAllFetched());
             String type = request.getParameter("type");
             MatchDAO mdao = new MatchDAO();
-            if(type == null) {
+            if(type == null && !c.getFriendly()) {
                 request.setAttribute("table", CompetitionModel.table(c.getId()));
-            } else if(type.equals("stats")) {
-            } else if(type.equals("schedule")) {
+            } else if((type == null && c.getFriendly()) || type.equals("schedule")) {
                 Map<Integer, List<Match>> schedule = CompetitionModel.schedule(c.getId());
                 List<Integer> rounds = new ArrayList<Integer>(schedule.keySet());
                 Collections.sort(rounds);
                 request.setAttribute("rounds", rounds);
                 request.setAttribute("schedule", schedule);
+            } else if(type.equals("stats")) {
             } else if(type.equals("results")) {
                 Map<Integer, List<Match>> results = CompetitionModel.results(c.getId());
                 List<Integer> rounds = new ArrayList<Integer>(results.keySet());

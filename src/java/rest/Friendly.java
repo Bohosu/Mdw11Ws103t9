@@ -6,6 +6,7 @@
 package rest;
 
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.NotFoundException;
 import data.Competition;
 import data.CompetitionDAO;
 import data.Match;
@@ -26,9 +27,11 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.xml.parsers.DocumentBuilder;
@@ -46,6 +49,33 @@ import org.xml.sax.SAXException;
  */
 @Path("/friendly")
 public class Friendly {
+
+    @DELETE
+    @Path("/{id}")
+    @Produces("text/plain")
+    public Response deleteReservation(@PathParam("id") Long id) {
+        MatchDAO dao = new MatchDAO();
+        CompetitionDAO cdao = new CompetitionDAO();
+        try {
+            Match m = dao.get(id);Competition c = cdao.get(m.getCompetition().getId());
+            if(c.getFriendly()) {
+                dao.delete(m);
+                if(dao.query().filter("competition", m.getCompetition()).count() == 0) {
+                    cdao.delete(c);
+                }
+                if(cdao.query().filter("season", c.getSeason()).count() == 0) {
+                    SeasonDAO sdao = new SeasonDAO();
+                    sdao.delete(c.getSeason().getId());
+                }
+                return Response.status(200).build();
+            } else {
+                return Response.status(400).build();
+            }
+        } catch(NotFoundException e) {
+            return Response.status(400).build();
+        }
+    }
+
 
     @POST
     @Consumes("application/xml")
@@ -109,6 +139,7 @@ public class Friendly {
                     Competition c = new Competition();
                     c.setName(sname);
                     c.setSeason(ks);
+                    c.setFriendly(true);
                     kc = cdao.put(c);
                 }
                 m.setCompetition(kc);
@@ -116,7 +147,7 @@ public class Friendly {
                 return Response.status(400).build();
             }
             Long mid = mdao.put(m).getId();
-            return Response.created(URI.create("/?section=match&id=" + mid)).build();
+            return Response.created(URI.create("/" + mid)).build();
         } catch (ParserConfigurationException ex) {
             return Response.serverError().build();
         } catch (SAXException ex) {

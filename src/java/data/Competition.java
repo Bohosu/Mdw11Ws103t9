@@ -16,6 +16,15 @@ public class Competition {
 
     @Id
     private Long id;
+    private boolean friendly;
+
+    public boolean getFriendly() {
+        return friendly;
+    }
+
+    public void setFriendly(boolean friendly) {
+        this.friendly = friendly;
+    }
 
     @Override
     public String toString() {

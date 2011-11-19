@@ -20,10 +20,10 @@
 
 <c:if test="${competition != null}">
 <ul>
-<c:if test="${competition.name ne \"Přátelské zápasy\"}">
+<c:if test="${!competition.friendly}">
     <li><a href="?section=competitions&competition=${competition.id}"<c:if test="${param.type == null}"> class="active"</c:if>>Tabulka</a></li>
 </c:if>
-    <li><a href="?section=competitions&competition=${competition.id}&type=schedule"<c:if test="${param.type eq \"schedule\"}"> class="active"</c:if>>Rozpis</a></li>
+    <li><a href="?section=competitions&competition=${competition.id}&type=schedule"<c:if test="${(param.type == null && competition.friendly) || param.type eq \"schedule\"}"> class="active"</c:if>>Rozpis</a></li>
     <li><a href="?section=competitions&competition=${competition.id}&type=results"<c:if test="${param.type eq \"results\"}"> class="active"</c:if>>Výsledky</a></li>
     <li><a href="?section=competitions&competition=${competition.id}&type=stats"<c:if test="${param.type eq \"stats\"}"> class="active"</c:if>>Statistika</a></li>
 </ul>
@@ -35,7 +35,7 @@
         <c:forEach var="r" items="${rounds}">
             <table>
                 <thead>
-                    <tr><th colspan="3"><c:choose><c:when test="${competition.name ne \"Přátelské zápasy\"}">${r}. kolo</c:when><c:otherwise>Přátelské zápasy</c:otherwise></c:choose></th></tr>
+                    <tr><th colspan="3"><c:choose><c:when test="${!competition.friendly}">${r}. kolo</c:when><c:otherwise>Přátelské zápasy</c:otherwise></c:choose></th></tr>
                 </thead>
                 <tbody>
                     <c:forEach var="m" items="${results[r]}">
@@ -53,7 +53,7 @@
         <c:forEach var="r" items="${rounds}">
             <table>
                 <thead>
-                    <tr><th colspan="2"><c:choose><c:when test="${competition.name ne \"Přátelské zápasy\"}">${r}. kolo</c:when><c:otherwise>Přátelské zápasy</c:otherwise></c:choose></th></tr>
+                    <tr><th colspan="2"><c:choose><c:when test="${!competition.friendly}">${r}. kolo</c:when><c:otherwise>Přátelské zápasy</c:otherwise></c:choose></th></tr>
                 </thead>
                 <tbody>
                     <c:forEach var="m" items="${schedule[r]}">
