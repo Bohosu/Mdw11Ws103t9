@@ -1,0 +1,306 @@
+/* 
+    Document   : admin
+    Created on : 26.10.2011, 12:26:02
+    Author     : ondrej
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body {
+    font-family: tahoma, verdana, arial, sans-serif;
+    margin: 20px 0;
+    text-align: center;
+    background-color: #327eb8;
+    font-size: 0.8em;
+}
+
+#window {
+    width: 90%;
+    min-width: 800px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 8px;
+    border: 1px solid #FFF;
+    box-shadow: 0 0 10px #333;
+    border-radius: 1em;
+    background-image: url('images/transparent_background.png');
+}
+
+.login {
+    width: 500px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #EEE;
+    font-weight: normal;
+    margin: 0;
+    margin-bottom: 8px;
+    font-size: 20px;
+    text-shadow: 0 1px 1px black;
+}
+
+#page {
+    text-align: center;
+    background-image: url('images/transparent_background2.png');
+    margin: 0;
+    box-shadow: 0 0 5px #666 inset;
+    border-radius: 0.8em;
+    border: 1px solid #DDD;
+    position: relative;
+}
+
+#menu {
+    margin: 1px;
+    height: 24px;
+    background-image: url('images/bg_gradient_small.png');
+    background-repeat: repeat-x;
+    background-color: #D8D8D8;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-shadow: 0 2px 3px #666;
+    border-bottom: 1px solid white;
+}
+
+
+#menu > ul {
+    margin: 0;
+    margin-left: 20px;
+    padding: 0;
+    list-style-image: none;
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #fff;
+    height: 24px;
+    float: left;
+    font-size: 0.9em;
+}
+
+#menu > ul.right {
+    float: right;
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+#menu > ul > li > a, #menu > ul > li > span {
+    display: block;
+    padding: 0 8px;
+    text-decoration: none;
+}
+
+#menu > ul > li > a:hover, #menu > ul > li > a.active {
+    background-color: #fbfbfb;
+    background-image: none;
+}
+
+#menu > ul > li {
+    margin: 0;
+    padding: 0;
+    list-style-image: none;
+    float: left;
+    display: block;
+    line-height: 24px;
+    border-right: 1px solid #bbb;
+    border-left: 1px solid #fff;
+    position: relative;
+}
+
+#menu > ul > li:hover {
+    background-color: #fbfbfb;
+}
+
+#content {
+    margin: 20px;
+    padding: 0;
+    text-align: left;
+}
+
+#section {
+    background-image: url('images/bg_gradient_big.png');
+    background-repeat: repeat-x;
+    background-color: #EEE;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px #999;
+    padding: 20px;
+}
+h2 {
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    color: #183A5C;
+    padding: 0 0 3px 0;
+    margin: 0 0 10px 0;
+    border-bottom: 1px dotted #183A5C;
+    text-shadow: 1px 1px 1px #666;
+    text-align: left;
+    letter-spacing: 2px;
+}
+
+#actions > ul {
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    list-style-image: none;
+    float: left;
+}
+
+#actions > ul > li {
+    margin: 0 5px;
+    padding: 0;
+    list-style-image: none;
+    float: left;
+    display: block;
+}
+
+#actions > ul > li a {
+    text-decoration: none;
+    display: block;
+    padding: 3px 4px;
+    margin: 0 4px;
+    background-image: url('images/bg_gradient_small.png');
+    background-repeat: repeat-x;
+    background-color: #D8D8D8;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px #888;
+}
+
+#actions > ul > li a:hover {
+    box-shadow: 0 1px 3px #444;
+}
+
+#actions > ul > li a.active {
+    border: 2px solid darkorange;
+    padding: 1px 2px;
+}
+
+
+#section > table {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border-radius: 0.6em;
+    background-color: #FAFAFA;
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    font-size: 100%;
+    margin-bottom: 10px;
+}
+
+
+#section > table thead tr {
+    background-image: url('images/bg_gradient_small.png');
+    background-repeat: repeat-x;
+    background-color: #D8D8D8;
+    height: 30px;
+}
+
+#section > table thead tr th {
+    text-align: center;
+}
+
+#section > table tbody tr td, #section > table thead tr th {
+    padding: 2px 8px;
+    margin: 0;
+    border-right: 1px dotted #CCC;
+}
+
+
+#section > form {
+
+}
+
+#section > form fieldset {
+    border: 1px dotted #888;
+}
+
+#section > form fieldset legend{
+    text-decoration: none;
+    display: block;
+    padding: 8px 15px;
+    margin: 0 4px;
+    margin-left: 20px;
+    background-image: url('images/bg_gradient_small.png');
+    background-repeat: repeat-x;
+    background-color: #D8D8D8;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px #888;
+}
+
+#section > form input[type="text"], #section > form input[type="password"],
+#section > form select, #section > form textarea {
+    background-image: url('images/bg_gradient_small.png');
+    background-repeat: repeat-x;
+    background-color: #D8D8D8;
+    padding: 2px 4px;
+    margin: 2px;
+    border-radius: 4px;
+    border: 1px solid #AAA;
+    border-bottom-color: white;
+    border-right-color: white;
+    outline: none;
+}
+
+
+#section > form label, #section > form div.label {
+    display: block;
+    margin: 10px 20px;
+    text-align: center;
+}
+
+#section > form label.non-label {
+    display: inline;
+    margin: 0;
+}
+
+#section > form div.submit {
+    text-align: center;
+}
+
+#section > form div.submit input {
+    font-size: 1.5em;
+    border: 1px solid #AAA;
+    padding: 6px 15px;
+    cursor: pointer;
+    background-color: #F6F6F6;
+    box-shadow: 0px 0px 2px #aaa;
+}
+
+.comment {
+    border: none;
+    background-image: url('images/bg_gradient_big.png');
+    background-repeat: repeat-x;
+    background-position: top;
+    background-color: #EEE;
+    box-shadow: 0px 1px 2px #838383;
+    padding: 5px 15px;
+    margin: 10px 0;
+}
+
+.comment p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+#section table.match {
+}
+
+#section table.match td {
+    border: none;
+    vertical-align: top;
+}
+
+#section table.match tr.skore {
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 0 0 5px #888;
+}
+
+#section table.match tr.teams {
+    text-shadow: 0 0 5px #888;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
